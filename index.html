@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#a8532a"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="사마리아인 테스트"><meta name="description" content="나의 긍휼의 대상과 영역을 찾아보는 약 10분 테스트">
+<title>사마리아인 테스트 — 나의 긍휼 지도</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--p:#a8532a;--p2:#f8ece1;--ink:#33291f;--g:#8b8176;--line:#e7dccd;--serif:"Nanum Myeongjo","Batang","Noto Serif KR",serif}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#f7f0e4 0%,#efe4d3 100%) fixed;font-family:"Noto Sans KR","Malgun Gothic","Apple SD Gothic Neo",sans-serif;font-weight:400;color:var(--ink);line-height:1.75;letter-spacing:-.01em}
+.wrap{max-width:720px;margin:0 auto;padding:28px 16px 70px}
+.card{background:#fffdf9;border:1px solid var(--line);border-radius:22px;padding:34px 30px;box-shadow:0 10px 34px #6b4a2a1a,0 1px 0 #fff inset;margin-top:14px}
+.cover{text-align:center;padding:48px 30px 38px}
+.cover h1{font-size:36px;letter-spacing:.04em;margin-bottom:12px}
+.cover h1:after{content:"";display:block;width:44px;height:2px;background:var(--p);margin:18px auto 0;opacity:.7}
+.cover .verse{text-align:left}
+.cover p{text-align:left}
+h1,h2,h3{font-family:var(--serif);color:#2a1f15}
+h1{font-size:30px;margin:0 0 6px;font-weight:800}h2{font-size:22px;margin:0 0 10px;font-weight:800}h3{font-size:18px;margin:20px 0 6px;font-weight:700}
+.sub{color:var(--g);font-size:14px}
+.verse{background:linear-gradient(135deg,#fbf1e6,#f6e7d6);border-left:4px solid var(--p);padding:18px 20px;border-radius:4px 14px 14px 4px;margin:22px 0;font-size:15px;font-family:var(--serif);line-height:1.85}
+.bar{height:8px;background:#e6dfd3;border-radius:8px;overflow:hidden;margin-bottom:6px}
+.bar i{display:block;height:100%;background:var(--p);transition:width .3s}
+.pg{font-size:13px;color:var(--g);display:flex;justify-content:space-between}
+.mapcard{text-align:center;padding:36px 22px 30px;background:radial-gradient(circle at 50% 0%,#fff 0%,#fffdf9 60%)}
+.mapcard h1{font-size:32px;letter-spacing:.04em;margin-bottom:8px}
+.eyebrow{font-size:11px;letter-spacing:.32em;color:var(--p);font-weight:700;margin-bottom:8px}
+.legend{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;font-size:13px;color:#5a4a3a;margin-top:6px}
+.legend span{display:flex;align-items:center;gap:8px}
+.legend i{display:inline-block;width:22px;height:4px;border-radius:2px}
+.legend i.dash{background:repeating-linear-gradient(90deg,#2f6b8f 0 6px,transparent 6px 10px)}
+.scn{font-family:var(--serif);font-size:20px;line-height:1.8;margin:20px 0 10px;padding:18px 20px;background:var(--p2);border-radius:14px;font-weight:700;color:#3a2a1c}
+.card .pg+.bar+.scn{margin-top:22px}
+.ic{font-size:40px}
+.q{font-weight:bold;margin:18px 0 8px;font-size:15px}
+.opts{display:flex;gap:8px;flex-wrap:wrap}
+.opt{flex:1;min-width:60px;border:1.5px solid var(--line);background:#fff;border-radius:14px;padding:11px 6px;text-align:center;cursor:pointer;font-size:14px;font-family:inherit;transition:all .15s;color:var(--ink)}
+.opt:hover{border-color:var(--p);transform:translateY(-1px)}.opt.on{background:var(--p);border-color:var(--p);color:#fff;box-shadow:0 4px 12px #a8532a40}
+.lab{display:flex;justify-content:space-between;font-size:12px;color:var(--g);margin-top:4px}
+.nav{display:flex;justify-content:space-between;margin-top:24px}
+button.b{background:var(--p);color:#fff;border:0;border-radius:999px;padding:12px 28px;font-size:16px;cursor:pointer;font-family:inherit;font-weight:500;box-shadow:0 4px 14px #a8532a38;transition:all .15s}
+button.b:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 6px 18px #a8532a50}
+button.b.s{background:#efe6d8;color:#5a4a3a;box-shadow:none}button.b:disabled{opacity:.35;cursor:default;box-shadow:none}
+textarea{width:100%;min-height:90px;border:1.5px solid var(--line);border-radius:14px;padding:12px;font-family:inherit;font-size:15px;background:#fff;line-height:1.7}
+textarea:focus{outline:none;border-color:var(--p)}
+.rowitem{margin:14px 0}
+.bg{height:16px;background:#eee;border-radius:8px;overflow:hidden}.bg i{display:block;height:100%;background:var(--p)}
+.tag{display:inline-block;background:var(--p2);color:var(--p);border-radius:20px;padding:3px 12px;font-size:13px;margin:2px 4px 2px 0;font-weight:bold}
+.top{display:flex;gap:12px;align-items:flex-start;margin:12px 0;padding:12px;background:#faf7f2;border-radius:12px}
+.top .ic{font-size:34px}
+.step{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:14px}.step .nm{width:150px}.step .bg{flex:1}
+.steps7{font-size:13px;color:#555}
+@media print{.nav,.noprint{display:none}body{background:#fff}}
+</style></head><body><div class="wrap"><div id="app"></div></div>
+<script>
+const D=[
+{n:"경제적 어려움",ic:"💸",s:"같이 공부하던 동기가 월세를 못 내 알바를 두 개씩 뛰다가 몸이 상했다는 소식을 들었다."},
+{n:"질병·장애",ic:"♿",s:"휠체어를 타는 친구가 모임 장소가 계단뿐이라 번번이 오지 못한다는 이야기를 들었다."},
+{n:"아동·청소년",ic:"🧒",s:"동네에서 혼자 라면으로 끼니를 때우며 늦게까지 밖에 있는 아이를 자주 마주친다."},
+{n:"노인·고립",ic:"🧓",s:"옆집에 혼자 사는 어르신이 몇 주째 인기척이 없고 우편물이 쌓여 있다."},
+{n:"이주민·소수자",ic:"🌏",s:"말이 서툰 이주노동자 동료가 점심시간마다 혼자 앉아 있고, 사람들이 슬슬 피한다."},
+{n:"중독·회복",ic:"🔗",s:"도박(혹은 게임) 중독으로 모든 걸 잃은 친구가 처음으로 '다시 해보고 싶다'고 연락해 왔다."},
+{n:"가정 해체",ic:"🏚️",s:"부모님의 이혼으로 갈 곳이 마땅치 않은 후배가 소파에서라도 며칠 지낼 수 없냐고 묻는다."},
+{n:"실패·재기",ic:"📉",s:"창업에 실패해 빚을 진 선배가 부끄러워 모든 모임에서 사라졌다."},
+{n:"교육·진로 격차",ic:"📚",s:"정보도 멘토도 없이 진로가 막힌 지방의 고등학생이 SNS로 조언을 구해 왔다."},
+{n:"정신건강",ic:"🌧️",s:"우울증을 앓는 친구가 두 달째 답장이 없고, 단톡방에서도 조용히 나갔다."},
+{n:"환경·피조물",ic:"🌊",s:"기후 위기로 삶의 터전을 잃어 가는 지역 소식과, 쓰레기로 덮인 동네 하천을 매일 지나친다."},
+{n:"영적 갈급",ic:"🕯️",s:"교회에서 상처받고 신앙을 떠난 친구가 '그래도 하나님이 있긴 한 걸까' 하고 중얼거린다."}];
+const A_OPT=["해 본 적 없다","한두 번 해 봤다","꾸준히 하고 있다"];
+const STEPS=[
+{n:"① 본다",t:"외면하지 않고 그 사람의 상황을 끝까지 바라본다",nx:"의식적으로 소식을 찾아 읽거나 현장을 한 번 방문해 보세요. 보는 것에서 모든 것이 시작됩니다."},
+{n:"② 마음이 움직인다",t:"그 사람 생각에 마음이 아프고 잠이 오지 않는다",nx:"그 사람의 이야기를 직접 들어 보세요. 통계 대신 얼굴과 이름을 만나면 마음이 달라집니다."},
+{n:"③ 다가간다",t:"먼저 다가가 말을 건다",nx:"이번 주에 한 사람에게 안부를 묻거나, 관련 단체 모임에 한 번 가 보세요."},
+{n:"④ 직접 돌본다",t:"내 손과 시간으로 직접 돕는다",nx:"작아도 정기적인 한 가지(주 1회 한 시간 등)를 정해 시작해 보세요."},
+{n:"⑤ 연결한다",t:"더 잘 도울 사람과 기관에 연결한다",nx:"그 영역에서 일하는 기관 한 곳을 찾아 연결해 보세요. 혼자 다 하지 않아도 됩니다."},
+{n:"⑥ 비용을 치른다",t:"내 돈·시간·계획을 포기하며 돕는다",nx:"내가 내려놓을 수 있는 것을 하나 정해 보세요. 사마리아인은 자기 일정과 돈을 내어놓았습니다."},
+{n:"⑦ 끝까지 책임진다",t:"일이 끝난 뒤에도 다시 찾아 끝까지 함께한다",nx:"지속 가능한 방식(팀, 일정, 사업 모델)을 고민해 보세요. 이것이 소명과 사업이 만나는 지점일 수 있습니다."}];
+const OB=[
+{n:"바쁨",t:"지금 내 일정과 목표만으로도 벅차서 멈출 여유가 없다",q:"내가 '바빠서'라고 말할 때, 정말 지키고 있는 건 무엇인가?"},
+{n:"두려움",t:"괜히 얽혔다가 내가 다치거나 곤란해질까 두렵다",q:"내가 가장 두려워하는 건 그 사람인가, 아니면 내가 감당해야 할 일인가?"},
+{n:"불편함·거리감",t:"나와 너무 다른 사람이라 어떻게 대해야 할지 불편하다",q:"그 사람과 나 사이의 '길 건너편'은 무엇인가? 누가 내 이웃의 경계를 정했나?"},
+{n:"내 일 아님",t:"그건 전문가나 국가, 교회가 할 일이라고 생각한다",q:"'누군가 하겠지'의 그 누군가가 나라면 어떨까?"},
+{n:"무력감",t:"내가 해 봐야 달라지는 게 없을 것 같다",q:"사마리아인이 한 건 문제 전체의 해결이었나, 눈앞의 한 사람이었나?"},
+{n:"평판 걱정",t:"사람들이 어떻게 볼지, 내 이미지에 해가 될까 걱정된다",q:"누구의 인정이 지금 내 발걸음을 붙잡고 있는가?"}];
+const REF=[
+"최근 1년 안에 내가 '지나쳐 버린' 길가의 사람은 누구였나요? 그때 나는 왜 지나쳤나요?",
+"다시는 모른 척할 수 없었던 순간이 있었나요? 그때 무엇을 보았나요?",
+"예수님은 마지막에 '누가 이웃이 되었느냐'고 물으셨습니다. 지금 내 이름을 넣어 답한다면 어떤 문장이 될까요?"];
+const NP=D.length+3+2; // A(12)+B(1 page w/7)+C(1 page w/6)... 구조는 render에서 정의
+let st={page:-1,h:Array(12).fill(0),a:Array(12).fill(-1),d:Array(7).fill(0),o:Array(6).fill(0),r:["","",""]};
+const PAGES=12+1+1+1; // A 12, B, C, D
+const app=document.getElementById('app');
+function esc(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+function opts(vals,cur,fn,labels){return `<div class="opts">`+vals.map((v,i)=>`<button class="opt ${cur===v?'on':''}" onclick="${fn}(${v})">${labels?labels[i]:v}</button>`).join('')+`</div>`}
+function head(){const p=Math.max(st.page,0);return `<div class="pg"><span>${p<12?'1부 · 길가의 사람들':p==12?'2부 · 나는 어디까지 가는가':p==13?'3부 · 나는 왜 지나치는가':'4부 · 돌아보기'}</span><span>${p+1} / ${PAGES}</span></div><div class="bar"><i style="width:${(p+1)/PAGES*100}%"></i></div>`}
+function nav(ok,last){return `<div class="nav"><button class="b s" onclick="go(-1)" ${st.page==0?'disabled':''}>← 이전</button><button class="b" onclick="go(1)" ${ok?'':'disabled'}>${last?'결과 보기':'다음 →'}</button></div>`}
+function go(d){st.page+=d;if(st.page>=PAGES)st.page=99;render();scrollTo(0,0)}
+function top3(){return D.map((_,i)=>i).sort((x,y)=>st.h[y]-st.h[x]||st.a[y]-st.a[x]||x-y).slice(0,3)}
+function setH(v){st.h[st.page]=v;render()}function setA(v){st.a[st.page]=v;render()}
+function setD(i,v){st.d[i]=v;render()}function setO(i,v){st.o[i]=v;render()}
+function render(){
+ const p=st.page;
+ if(p==-1){app.innerHTML=`<div class="card cover"><h1>사마리아인 테스트</h1><div class="sub">나의 긍휼의 대상과 영역을 찾아보는 시간 · 약 10분</div>
+ <div class="verse"><b>누가복음 10:30~37 (요약)</b><br>강도를 만나 길가에 쓰러진 사람을 제사장도, 레위인도 보고 피해 지나갔습니다. 그러나 한 사마리아인은 그를 보고 <b>불쌍히 여겨</b> 다가가 상처를 싸매 주고, 자기 짐승에 태워 여관으로 데려가 돌보았고, 비용을 치르며 다시 오겠다고 약속했습니다.<br>예수님은 물으셨습니다. <b>“누가 강도 만난 사람의 이웃이 되었느냐?”</b></div>
+ <p>이 테스트는 정답이나 점수 순위를 가리는 시험이 아닙니다. 지금 내 마음이 어디로 향하는지, 어디까지 움직여 봤는지, 무엇이 나를 지나치게 하는지를 살펴보는 <b>소명 대화의 출발점</b>입니다.</p>
+ <p class="sub">답변은 이 화면 안에서만 쓰이고 어디에도 저장·전송되지 않습니다. 솔직하게 답할수록 도움이 됩니다.</p>
+ <div class="nav"><span></span><button class="b" onclick="st.page=0;render()">시작하기</button></div></div>`;return}
+ if(p==99){result();return}
+ if(p<12){const x=D[p];
+  app.innerHTML=`<div class="card">${head()}  <div class="scn">${x.s}</div>
+  <div class="q">① 이 이야기에 내 마음은 얼마나 걸리나요?</div>${opts([1,2,3,4,5],st.h[p],'setH')}<div class="lab"><span>별 느낌 없다</span><span>마음이 많이 쓰인다</span></div>
+  <div class="q">② 이 대상이나 영역을 위해 실제로 움직여 본 적이 있나요? <span class="sub">(기도·후원·봉사·대화 포함)</span></div>${opts([0,1,2],st.a[p],'setA',A_OPT)}
+  ${nav(st.h[p]>0&&st.a[p]>=0)}</div>`;return}
+ if(p==12){const t=D[top3()[0]];
+  app.innerHTML=`<div class="card">${head()}<h2>${t.ic} 가장 마음이 걸린 영역: ${t.n}</h2>
+  <p>이 영역에서 길가에 쓰러진 사람을 만났다고 상상해 보세요. 사마리아인의 행동 7단계에 비춰, <b>지금의 나는 얼마나 그렇게 할 것 같은지</b> 솔직하게 답해 주세요.</p>
+  ${STEPS.map((s,i)=>`<div class="rowitem"><div class="q">${s.n} — ${s.t}</div>${opts([1,2,3,4,5],st.d[i],'(v=>setD('+i+',v))')}</div>`).join('')}
+  <div class="lab"><span>1 전혀 아니다</span><span>5 분명히 그렇게 한다</span></div>
+  ${nav(st.d.every(v=>v>0))}</div>`;return}
+ if(p==13){
+  app.innerHTML=`<div class="card">${head()}<h2>제사장과 레위인은 왜 지나쳤을까요</h2><p>그들도 나쁜 사람이 아니었을 겁니다. 우리가 길가의 사람을 지나치게 되는 이유는 무엇에 가깝나요?</p>
+  ${OB.map((s,i)=>`<div class="rowitem"><div class="q">${s.n} — ${s.t}</div>${opts([1,2,3,4,5],st.o[i],'(v=>setO('+i+',v))')}</div>`).join('')}
+  <div class="lab"><span>1 나와 거리가 멀다</span><span>5 바로 나다</span></div>
+  ${nav(st.o.every(v=>v>0))}</div>`;return}
+ if(p==14){
+  app.innerHTML=`<div class="card">${head()}<h2>마지막으로, 천천히 생각해 보세요</h2><p class="sub">한두 문장이면 충분합니다. 비워 두어도 결과를 볼 수 있습니다.</p>
+  ${REF.map((q,i)=>`<div class="rowitem"><div class="q">${i+1}. ${q}</div><textarea oninput="st.r[${i}]=this.value">${esc(st.r[i])}</textarea></div>`).join('')}
+  ${nav(true,true)}</div>`;return}
+}
+function radar(){
+ const cx=230,cy=215,R=125,n=12;
+ const pt=(i,v)=>{const a=(-90+360/n*i)*Math.PI/180;return [cx+R*v/5*Math.cos(a),cy+R*v/5*Math.sin(a)]};
+ let s=`<svg viewBox="0 0 460 430" style="width:100%;max-width:520px;display:block;margin:12px auto 0;font-family:'Noto Sans KR','Malgun Gothic',sans-serif"><defs><radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#c46a36" stop-opacity=".18"/><stop offset="1" stop-color="#c46a36" stop-opacity=".5"/></radialGradient></defs>`;
+ s+=`<circle cx="${cx}" cy="${cy}" r="${R+8}" fill="#fbf4ea"/>`;
+ [1,2,3,4,5].forEach(v=>{s+=`<polygon points="${D.map((_,i)=>pt(i,v)).join(' ')}" fill="${v%2?'#ffffff88':'none'}" stroke="#e3d6c3" stroke-width="${v==5?1.4:.8}"/>`});
+ [1,3,5].forEach(v=>{const p=pt(0,v);s+=`<text x="${p[0]+4}" y="${p[1]+3}" font-size="9" fill="#b3a595">${v}</text>`});
+ D.forEach((x,i)=>{const e=pt(i,5),l=pt(i,5.95),dx=l[0]-cx,anc=Math.abs(dx)<12?'middle':dx>0?'start':'end';s+=`<line x1="${cx}" y1="${cy}" x2="${e[0]}" y2="${e[1]}" stroke="#eadfce" stroke-width=".8"/><text x="${l[0]}" y="${l[1]+4}" font-size="12" font-weight="500" text-anchor="${anc}" fill="#5a4a3a">${x.n}</text>`});
+ s+=`<polygon points="${D.map((_,i)=>pt(i,st.h[i])).join(' ')}" fill="url(#rg)" stroke="#b25a2a" stroke-width="2.4" stroke-linejoin="round"/>`;
+ D.forEach((_,i)=>{const p=pt(i,st.h[i]);s+=`<circle cx="${p[0]}" cy="${p[1]}" r="3.6" fill="#fff" stroke="#b25a2a" stroke-width="2"/>`});
+ s+=`<polygon points="${D.map((_,i)=>pt(i,st.a[i]*2.5)).join(' ')}" fill="#2e6fa31a" stroke="#2f6b8f" stroke-width="2.2" stroke-dasharray="6 4" stroke-linejoin="round"/></svg>`;
+ s+=`<div class="legend"><span><i style="background:#b25a2a"></i>마음이 걸리는 정도</span><span><i class="dash"></i>실제로 움직인 정도</span></div>`;
+ return s}
+function result(){
+ const T=top3(),first=D[T[0]];
+ const stop=st.d.findIndex(v=>v<4);
+ const stopI=stop<0?6:stop;
+ const ob=OB.map((x,i)=>({x,v:st.o[i]})).sort((a,b)=>b.v-a.v).slice(0,2);
+ const unmoved=D.map((x,i)=>i).filter(i=>st.h[i]>=4&&st.a[i]==0);
+ const walking=D.map((x,i)=>i).filter(i=>st.a[i]==2);
+ const depthTxt=stop<0?"7단계 모두에서 높게 답하셨습니다. 이제 질문은 ‘어떻게 지속할 것인가’입니다.":`${STEPS[stopI].n}에서 멈칫하는 경향이 있습니다.`;
+ app.innerHTML=`<div class="card mapcard"><div class="eyebrow">COMPASSION MAP</div><h1>나의 긍휼 지도</h1><div class="sub">주황 면은 마음이 걸리는 정도, 파란 점선은 실제로 움직인 정도입니다.</div>${radar()}</div>
+ <div class="card"><h2>🧭 마음이 향하는 영역 TOP 3</h2>
+ ${T.map((i,k)=>`<div class="top"><div class="ic">${D[i].ic}</div><div><b>${k+1}. ${D[i].n}</b><br><span class="sub">마음 ${st.h[i]}/5 · 행동: ${A_OPT[st.a[i]]}</span></div></div>`).join('')}
+ ${unmoved.length?`<h3>💭 마음은 큰데 아직 움직이지 않은 영역</h3>${unmoved.map(i=>`<span class="tag">${D[i].ic} ${D[i].n}</span>`).join('')}<p class="sub">‘알지만 가 보지 않은 길’일 수 있습니다. 작은 첫걸음을 정해 보세요.</p>`:''}
+ ${walking.length?`<h3>👣 이미 걷고 있는 길</h3>${walking.map(i=>`<span class="tag">${D[i].ic} ${D[i].n}</span>`).join('')}<p class="sub">꾸준히 하고 있는 일은 소명의 단서입니다. 왜 그 일은 계속하게 되었는지 돌아보세요.</p>`:''}</div>
+ <div class="card"><h2>🪜 사마리아인의 7단계 — ${first.ic} ${first.n} 영역</h2>
+ ${STEPS.map((s,i)=>`<div class="step"><div class="nm">${s.n}</div><div class="bg"><i style="width:${st.d[i]*20}%"></i></div><b>${st.d[i]}</b></div>`).join('')}
+ <p><b>${depthTxt}</b></p><div class="verse"><b>다음 한 걸음</b><br>${STEPS[stopI].nx}</div></div>
+ <div class="card"><h2>🚧 나를 지나치게 하는 것</h2>
+ ${ob.map(o=>`<div class="top"><div><b>${o.x.n}</b> <span class="sub">(${o.v}/5)</span><br>${o.x.t}<br><i>질문: ${o.x.q}</i></div></div>`).join('')}</div>
+ <div class="card"><h2>✍️ 나의 기록</h2>${REF.map((q,i)=>`<div class="rowitem"><div class="sub">${q}</div><div>${esc(st.r[i]||'(비워 둠)').replace(/\n/g,'<br>')}</div></div>`).join('')}</div>
+ <div class="card"><h2>🌱 소명 대화를 위한 질문</h2><ol>
+ <li>${first.n} 영역의 사람들이 ‘가장 필요로 하는 한 가지’는 무엇일까요?</li>
+ <li>내가 가진 재능·직업·사업은 그 필요와 어디에서 만날 수 있을까요?</li>
+ <li>이번 달 안에 할 수 있는 가장 작은 한 걸음은 무엇인가요?</li>
+ <li>이 길을 함께 걸어 줄 사람(멘토·동료)은 누구인가요?</li></ol>
+ <p class="sub">이 결과는 소명을 확정하는 점수가 아니라, 대화를 시작하는 지도입니다. 멘토나 신뢰하는 사람과 함께 나눠 보세요.</p>
+ <div class="nav noprint"><button class="b s" onclick="location.reload()">다시 하기</button><button class="b s" onclick="copyR()">결과 복사</button><button class="b" onclick="print()">인쇄·PDF 저장</button></div></div>`;
+ window._txt=`[사마리아인 테스트 결과]\nTOP3: ${T.map(i=>D[i].n+'(마음'+st.h[i]+'/행동 '+A_OPT[st.a[i]]+')').join(', ')}\n멈추는 단계: ${stop<0?'없음':STEPS[stopI].n}\n지나치는 이유: ${ob.map(o=>o.x.n).join(', ')}\n`+REF.map((q,i)=>`\nQ${i+1}. ${q}\n${st.r[i]}`).join('');
+}
+function copyR(){navigator.clipboard.writeText(window._txt).then(()=>alert('결과를 복사했습니다.'),()=>alert('복사에 실패했습니다.'))}
+render();
+</script></body></html>
