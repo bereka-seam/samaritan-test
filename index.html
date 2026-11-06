@@ -50,6 +50,35 @@ textarea:focus{outline:none;border-color:var(--p)}
 .top .ic{font-size:34px}
 .step{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:14px}.step .nm{width:150px}.step .bg{flex:1}
 .steps7{font-size:13px;color:#555}
+body,.card,.verse,.scn,.q,.opt,.step,.top,p,li,h1,h2,h3{word-break:keep-all;overflow-wrap:break-word}
+html{-webkit-text-size-adjust:100%}
+.opt{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+@media(max-width:600px){
+ body{line-height:1.7}
+ .wrap{padding:12px 10px 50px}
+ .card{padding:22px 18px;border-radius:18px;margin-top:10px}
+ .cover{padding:34px 18px 28px}
+ .cover h1{font-size:28px}
+ h1{font-size:25px}h2{font-size:19px}h3{font-size:16px}
+ .verse{padding:14px 15px;font-size:14.5px;line-height:1.8;margin:18px 0}
+ .scn{font-size:17.5px;line-height:1.75;padding:15px 16px;margin:16px 0 6px}
+ .q{font-size:15px;margin:20px 0 10px;line-height:1.55}
+ .opts{gap:6px}
+ .opt{min-width:0;padding:13px 4px;font-size:14px;line-height:1.35}
+ .opts:has(.opt:nth-child(3):last-child){flex-direction:column}
+ .opts:has(.opt:nth-child(3):last-child) .opt{padding:13px 12px;text-align:left}
+ .lab{font-size:11.5px}
+ .nav{gap:10px;margin-top:22px}
+ button.b{padding:13px 20px;font-size:15px}
+ .nav button.b{flex:1}
+ textarea{font-size:16px}
+ .top{padding:11px}
+ .step{flex-wrap:wrap;gap:4px 8px}.step .nm{width:100%;font-size:13.5px;font-weight:500}
+ .mapcard{padding:28px 10px 24px}
+ .mapcard h1{font-size:27px}
+ .legend{gap:8px 16px;font-size:12.5px}
+ .nav.noprint{flex-wrap:wrap}.nav.noprint button.b{flex:1 1 30%;padding:12px 8px;font-size:14px}
+}
 @media print{.nav,.noprint{display:none}body{background:#fff}}
 </style></head><body><div class="wrap"><div id="app"></div></div>
 <script>
@@ -128,13 +157,13 @@ function render(){
   ${nav(true,true)}</div>`;return}
 }
 function radar(){
- const cx=230,cy=215,R=125,n=12;
+ const cx=260,cy=215,R=125,n=12;
  const pt=(i,v)=>{const a=(-90+360/n*i)*Math.PI/180;return [cx+R*v/5*Math.cos(a),cy+R*v/5*Math.sin(a)]};
- let s=`<svg viewBox="0 0 460 430" style="width:100%;max-width:520px;display:block;margin:12px auto 0;font-family:'Noto Sans KR','Malgun Gothic',sans-serif"><defs><radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#c46a36" stop-opacity=".18"/><stop offset="1" stop-color="#c46a36" stop-opacity=".5"/></radialGradient></defs>`;
+ let s=`<svg viewBox="0 0 520 430" style="width:100%;max-width:520px;display:block;margin:12px auto 0;font-family:'Noto Sans KR','Malgun Gothic',sans-serif"><defs><radialGradient id="rg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#c46a36" stop-opacity=".18"/><stop offset="1" stop-color="#c46a36" stop-opacity=".5"/></radialGradient></defs>`;
  s+=`<circle cx="${cx}" cy="${cy}" r="${R+8}" fill="#fbf4ea"/>`;
  [1,2,3,4,5].forEach(v=>{s+=`<polygon points="${D.map((_,i)=>pt(i,v)).join(' ')}" fill="${v%2?'#ffffff88':'none'}" stroke="#e3d6c3" stroke-width="${v==5?1.4:.8}"/>`});
  [1,3,5].forEach(v=>{const p=pt(0,v);s+=`<text x="${p[0]+4}" y="${p[1]+3}" font-size="9" fill="#b3a595">${v}</text>`});
- D.forEach((x,i)=>{const e=pt(i,5),l=pt(i,5.95),dx=l[0]-cx,anc=Math.abs(dx)<12?'middle':dx>0?'start':'end';s+=`<line x1="${cx}" y1="${cy}" x2="${e[0]}" y2="${e[1]}" stroke="#eadfce" stroke-width=".8"/><text x="${l[0]}" y="${l[1]+4}" font-size="12" font-weight="500" text-anchor="${anc}" fill="#5a4a3a">${x.n}</text>`});
+ D.forEach((x,i)=>{const e=pt(i,5),l=pt(i,5.95),dx=l[0]-cx,anc=Math.abs(dx)<12?'middle':dx>0?'start':'end';s+=`<line x1="${cx}" y1="${cy}" x2="${e[0]}" y2="${e[1]}" stroke="#eadfce" stroke-width=".8"/><text x="${l[0]}" y="${l[1]+4}" font-size="14" font-weight="500" text-anchor="${anc}" fill="#5a4a3a">${x.n}</text>`});
  s+=`<polygon points="${D.map((_,i)=>pt(i,st.h[i])).join(' ')}" fill="url(#rg)" stroke="#b25a2a" stroke-width="2.4" stroke-linejoin="round"/>`;
  D.forEach((_,i)=>{const p=pt(i,st.h[i]);s+=`<circle cx="${p[0]}" cy="${p[1]}" r="3.6" fill="#fff" stroke="#b25a2a" stroke-width="2"/>`});
  s+=`<polygon points="${D.map((_,i)=>pt(i,st.a[i]*2.5)).join(' ')}" fill="#2e6fa31a" stroke="#2f6b8f" stroke-width="2.2" stroke-dasharray="6 4" stroke-linejoin="round"/></svg>`;
