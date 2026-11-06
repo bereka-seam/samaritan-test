@@ -137,7 +137,7 @@ function render(){
  if(p==99){result();return}
  if(p<12){const x=D[p];
   app.innerHTML=`<div class="card">${head()}  <div class="scn">${x.s}</div>
-  <div class="q">① 이 이야기에 내 마음은 어떤가요?</div>${opts([1,2,3,4,5],st.h[p],'setH')}<div class="lab"><span>별 느낌 없다</span><span>마음이 많이 쓰인다</span></div>
+  <div class="q">① 이 이야기를 들을 때 내 마음은 어떤가요?</div>${opts([1,2,3,4,5],st.h[p],'setH')}<div class="lab"><span>별 느낌 없다</span><span>마음이 많이 쓰인다</span></div>
   <div class="q">② 이 대상이나 영역을 위해 실제로 움직여 본 적이 있나요? <span class="sub">(기도·후원·봉사·대화 포함)</span></div>${opts([0,1,2],st.a[p],'setA',A_OPT)}
   ${nav(st.h[p]>0&&st.a[p]>=0)}</div>`;return}
  if(p==12){const t=D[top3()[0]];
